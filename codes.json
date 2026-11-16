@@ -1,4 +1,6 @@
 {
 	"codes": {
+		"RELEASE": { "cash": 10000 },
+		"SWINGGAME": { "cash": 10000 }
 	}
 }
