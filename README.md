@@ -45,3 +45,30 @@ A file the game cannot read is ignored as a whole, and the servers keep using th
 - a list longer than 500 entries
 
 A server that started while the file was unreadable uses the lists written in the game's Console script instead.
+
+# Shop codes
+
+`codes.json` holds the codes players type in the shop's Codes tab. Each code pays cash once per player.
+
+```json
+{
+	"codes": {
+		"WELCOME": { "cash": 2500 },
+		"HALLOWEEN": { "cash": 10000, "expires": "2026-11-30" }
+	}
+}
+```
+
+- The name is the code. Capitals and spaces do not matter: players can type `welcome`.
+- `cash` is what it pays.
+- `expires` is optional. A date alone (`2026-11-30`) lasts until the end of that day, UTC. A full time also works: `2026-11-30T18:00:00Z`.
+
+What a player sees:
+
+- a code that is not in the file: no such code
+- a code past its `expires`: it has expired (even if they used it before)
+- a code they already used that has not expired: already used
+
+To end a code early, set `expires` to a past date instead of deleting it, so players are told it expired. Deleting it makes it "no such code".
+
+Servers read the file every 5 minutes, the same as permissions. A file with a mistake (broken JSON, `cash` that is not a number, a date that cannot be read, a name longer than 32 letters) is ignored whole and the last good one stays.
