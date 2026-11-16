@@ -1,0 +1,11 @@
+{
+	"roles": {
+		"admin": [2911536154],
+		"moderator": [],
+		"tester": []
+	},
+	"commands": {
+		"moderator": ["help", "players", "kick", "ban", "unban", "bans"],
+		"tester": ["help", "players", "givemoney"]
+	}
+}
